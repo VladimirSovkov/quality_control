@@ -1,0 +1,15 @@
+{
+  "id": "9999",
+  "category_id": "1",
+  "title": "testim",
+  "alias": "testim",
+  "content": "<p>some huge text for test this field\n test desctiption</p>",
+  "price": "8719",
+  "old_price": "1",
+  "status": "0",
+  "keywords": "test",
+  "description": "Sorry for the inconvenience :)",
+  "img": "no_image.jpg",
+  "hit": "1",
+  "cat": "Men"
+}
