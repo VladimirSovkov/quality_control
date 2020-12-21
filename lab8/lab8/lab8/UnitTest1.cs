@@ -16,7 +16,7 @@ namespace lab8
             const int port = 8080;
             client.DeleteImposter(port);
 
-            var imposter = client.CreateHttpImposter(8080);
+            var imposter = client.CreateHttpImposter(port);
 
             imposter.AddStub().ReturnsJson(HttpStatusCode.OK, 91.21).OnPathAndMethodEqual($"/rate/usd", Method.Get);
             imposter.AddStub().ReturnsJson(HttpStatusCode.OK, 89.90).OnPathAndMethodEqual($"/rate/eur", Method.Get);
@@ -46,10 +46,10 @@ namespace lab8
         {
             Setup();
             var responseCode = await GetResponseCodeAsync("http://localhost:8080/rate/usd");
-            Assert.Pass(HttpStatusCode.OK.ToString(), responseCode);
+            Assert.AreEqual(HttpStatusCode.OK.ToString(), responseCode);
 
             string response = await GetResponseAsync("http://localhost:8080/rate/usd");
-            Assert.Pass("91.21", response);
+            Assert.AreEqual("91.21", response);
         }
 
         [Test]
@@ -57,10 +57,10 @@ namespace lab8
         {
             Setup();
             var responseCode = await GetResponseCodeAsync("http://localhost:8080/rate/usd");
-            Assert.Pass(HttpStatusCode.OK.ToString(), responseCode);
+            Assert.AreEqual(HttpStatusCode.OK.ToString(), responseCode);
             
             string response = await GetResponseAsync("http://localhost:8080/rate/eur");
-            Assert.Pass("89.90", response);
+            Assert.AreEqual("89.9", response);
         }
 
         [Test]
@@ -68,10 +68,10 @@ namespace lab8
         {
             Setup();
             var responseCode = await GetResponseCodeAsync("http://localhost:8080/rate/usd");
-            Assert.Pass(HttpStatusCode.OK.ToString(), responseCode);
+            Assert.AreEqual(HttpStatusCode.OK.ToString(), responseCode);
            
             string response = await GetResponseAsync("http://localhost:8080/rate/rub");
-            Assert.Pass("20", response);
+            Assert.AreEqual("20", response);
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace lab8
             Setup();
             var responseCode = await GetResponseCodeAsync("http://localhost:8080/rate/noRate");
             
-            Assert.Pass(HttpStatusCode.BadRequest.ToString(), responseCode);
+            Assert.AreEqual(HttpStatusCode.BadRequest.ToString(), responseCode);
         }
     }
 }
